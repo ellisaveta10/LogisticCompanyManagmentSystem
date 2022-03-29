@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4 th:if="${courierEmployees.size()>0}" th:text="'Registered Courier Employees: ' + ${courierEmployees.size()}"> </h4>
+<div class=" col-6">
+    <h3 th:unless="${courierEmployees} and ${courierEmployees.size()}">There are no courier employees!</h3>
+    <table th:if="${courierEmployees.size()>0}" class="table table-hover">
+        <th>Id</th>
+        <!--<th><a th:href="@{'/schools/sort-by-name/'+${sortDirection}}"> Name</a></th>-->
+        <th>Name</th>
+        <th>Logistics Company</th>
+        <th>Edit employee</th>
+        <th>Delete employee</th>
+        <tr th:each="courierEmployee : ${courierEmployees}">
+            <td th:text="${courierEmployee.id}"></td>
+            <td th:text="${courierEmployee.name}"></td>
+            <td th:text="${courierEmployee.logisticsCompany}"></td>
+            <td><a class="btn btn-info" th:href="@{'/courierEmployees/edit-courierEmployee/'+${courierEmployee.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/courierEmployees/delete/'+${courierEmployee.id}}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

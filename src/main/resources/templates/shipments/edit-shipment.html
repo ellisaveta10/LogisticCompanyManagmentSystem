@@ -1,0 +1,108 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4>Register the Shipment</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/shipments/update/{id}(id=${id})}" th:object="${shipment}" method="post">
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input class="form-control" type="text" th:field="*{address}"
+                   placeholder="Address" id="address">
+            <span class="text-danger" th:if="${#fields.hasErrors('address')}"
+                  th:errors="*{address}">Address Error</span>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input class="form-control" type="text" th:field="*{weight}" placeholder="Weight" id="weight">
+                <span class="text-danger" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Name Error</span>
+            </div>
+            <div class="form-group">
+                <label for="sender">Sender</label>
+                <input class="form-control" type="text" th:field="*{sender.name}" placeholder="Name of sender" id="sender">
+                <span class="text-danger" th:if="${#fields.hasErrors('sender')}"
+                      th:errors="*{sender}">Sender Error</span>
+            </div>
+
+            <div class="form-group">
+                <label for="receiver">Receiver</label>
+                <input class="form-control" type="text" th:field="*{receiver.name}" placeholder="Name of receiver" id="receiver">
+                <span class="text-danger" th:if="${#fields.hasErrors('receiver')}"
+                      th:errors="*{receiver}">Receiver Error</span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Shipment</button>
+    </form>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+    <h2 class="text-center py-4">Edit office</h2>
+
+    <form class="text-center" method="post" th:action="@{/shipments/update/{id}(id=${id})}" th:object="${shipment}">
+        <div class="form-group">
+            <label for="address">Address</label>
+            <select class="form-control" th:field="${shipment.address}" id="address">
+                <option value="">Select Address</option>
+                <option th:each="address : ${addresses}" th:value="${address.id}"
+                        th:text="${address.address}"></option>
+            </select>
+        </div>
+
+       <!-- <div class="form-group">
+            <label for="company">Company</label>
+            <select class="form-control" th:field="${office.logisticsCompany.id}" id="company">
+                <option th:each="company : ${companies}" th:value="${company.id}"
+                        th:text="${company.name}"></option>
+            </select>
+        </div>-->
+        <div class="form-group">
+            <label for="weight">Weight</label>
+            <input class="form-control" type="text" th:field="*{weight}" placeholder="Weight" id="weight">
+            <span class="text-danger" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Name Error</span>
+        </div>
+
+        <label for="weight">Sender</label>
+        <select class="form-control" th:field="${shipment.sender}" id="sender">
+            <option value="">Select sender</option>
+            <option th:each="sender : ${clients}" th:value="${sender.id}"
+                    th:text="${sender.name}"></option>
+        </select>
+
+        </br>
+        <label for="weight">Receiver</label>
+        <select class="form-control" th:field="${shipment.receiver}" id="reciever">
+            <option value="">Select receiver</option>
+            <option th:each="reciever : ${clients}" th:value="${reciever.id}"
+                    th:text="${reciever.name}"></option>
+        </select>
+
+        </br>
+        <label for="officeEmployee">Office employee</label>
+        <select class="form-control" th:field="${shipment.officeEmployee}" id="officeEmployee">
+            <option value="">Select office employee</option>
+            <option th:each="officeEmployee : ${officeEmployees}" th:value="${officeEmployee.id}"
+                    th:text="${officeEmployee.name}"></option>
+        </select>
+
+        <div class="form-group">
+            <button name="submit" type="submit" class="btn btn-primary w-25 p-2">Save</button>
+        </div>
+
+    </form>
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

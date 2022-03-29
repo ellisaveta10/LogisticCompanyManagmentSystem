@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4 th:if="${officeEmployees.size()>0}" th:text="'Registered Office Employees: ' + ${officeEmployees.size()}"> </h4>
+<div class=" col-6">
+    <h3 th:unless="${officeEmployees} and ${officeEmployees.size()}">There are no office employees!</h3>
+    <table th:if="${officeEmployees.size()>0}" class="table table-hover">
+        <th>Id</th>
+        <!--<th><a th:href="@{'/schools/sort-by-name/'+${sortDirection}}"> Name</a></th>-->
+        <th>Name</th>
+        <th>Logistics Company</th>
+        <th>Edit office employee</th>
+        <th>Delete office employee</th>
+        <tr th:each="officeEmployee : ${officeEmployees}">
+            <td th:text="${officeEmployee.id}"></td>
+            <td th:text="${officeEmployee.name}"></td>
+            <td th:text="${officeEmployee.logisticsCompany}"></td>
+            <td><a class="btn btn-info" th:href="@{'/officeEmployees/edit-officeEmployee/'+${officeEmployee.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/officeEmployees/delete/'+${officeEmployee.id}}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

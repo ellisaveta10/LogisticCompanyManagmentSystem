@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<div class="container">
+    <h2 class="text-center py-4">Select company</h2>
+
+    <form class="text-center">
+        <h3 th:unless="${logisticCompanies} and ${logisticCompanies.size()}">There are no logisticCompanies!</h3>
+        <div class="form-group">
+            <label class="companies">Logistic Companies: </label></br>
+            <th:block th:each="logisticCompany: ${logisticCompanies}">
+                <input type="hidden" th:field="*{logisticCompanies}"
+                       th:text="${logisticCompany.name}" th:value="${logisticCompany.id}" class="m-2" />
+                <a class="btn btn-info" th:href="@{'/logisticCompanies/referenceForCompaniesFormForEmployees/' + ${logisticCompany.id}}">Select</a>
+            </th:block>
+        </div>
+    </form>
+
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

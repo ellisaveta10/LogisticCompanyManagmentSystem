@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+    <h3 th:unless="${roles} and ${roles.size()}" class="text-center">There are no roles</h3>
+    <h2 th:if="${roles.size()>0}" class="text-center py-4">All available roles</h2>
+    <table th:if="${roles.size()>0}" class="table table-bordered">
+        <thead>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </tr>
+        </thead>
+        </tbody>
+        <tr th:each="role : ${roles}">
+            <td th:text="${role.id}"></td>
+            <td th:text="${role.name}"></td>
+            <td><a class="btn btn-info" th:href="@{'/roles/edit-role/'+${role.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/roles/delete/'+${role.id}}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>
+

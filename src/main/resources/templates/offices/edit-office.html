@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+    <h2 class="text-center py-4">Edit office</h2>
+
+    <form class="text-center" method="post" th:action="@{/offices/update/{id}(id=${office.id})}" th:object="${office}">
+        <div class="form-group">
+            <label for="text">Enter new name</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-address-card"></i>
+                    </div>
+                </div>
+                <input th:field="*{name}" id="text" name="text" placeholder="Office name" type="text" required="required" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <select class="form-control" th:field="${office.address}" id="address">
+                <option value="">Select Address</option>
+                <option th:each="address : ${addresses}" th:value="${address.id}"
+                        th:text="${address.address}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="company">Company</label>
+            <select class="form-control" th:field="${office.logisticsCompany.id}" id="company">
+                <option th:each="company : ${companies}" th:value="${company.id}"
+                        th:text="${company.name}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button name="submit" type="submit" class="btn btn-primary w-25 p-2">Save</button>
+        </div>
+
+
+    </form>
+
+
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

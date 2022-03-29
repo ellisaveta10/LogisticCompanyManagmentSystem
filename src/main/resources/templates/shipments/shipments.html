@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<!--<h4 th:if="${shipments.size()>0}" th:text="'Registered Shipments: ' + ${shipments.size()}"> </h4>
+<div class=" col-6">
+    <h3 th:unless="${shipments} and ${shipments.size()}">There are no shipments!</h3>
+    <table th:if="${shipments.size()>0}" class="table table-hover">-->
+
+        <div class="container">
+            <h2 th:unless="${shipments} and ${shipments.size()}" class="text-center">There are no shipments</h2>
+            <h2 th:if="${shipments.size()>0}" class="text-center py-4">All available shipments</h2>
+            <table th:if="${shipments.size()>0}" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Address</th>
+                <th>Weight</th>
+                <th>Receiver</th>
+                <th>Sender</th>
+                <th>Office employee</th>
+                <th>Edit shipment</th>
+                <th>Delete shipment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="shipment : ${shipments}">
+                <td th:text="${shipment.id}"></td>
+                <td th:text="${shipment.address.address}"></td>
+                <td th:text="${shipment.weight}"></td>
+                <td th:text="${shipment.receiver.name}"></td>
+                <td th:text="${shipment.sender.name}"></td>
+                <td th:text="${shipment.officeEmployee.name}"></td>
+                <td><a class="btn btn-info" th:href="@{'/shipments/edit-shipment/'+${shipment.id}}">Edit</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/shipments/delete/'+${shipment.id}}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

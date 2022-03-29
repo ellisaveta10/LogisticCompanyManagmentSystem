@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<form th:action="@{/officeEmployees/referenceForShipmentsFormForEmployees/{id}(id=${id})}" th:object="${officeEmployee}" method="get">
+    <div class="container text-center">
+        <div>
+            <h1>List of Shipments for employee: [[${officeEmployee.name}]]</h1>
+        </div>
+
+        <div>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Shipment ID</th>
+                    <th>Shipment weight</th>
+                    <th>Shipment address</th>
+                    <th>Shipment receivers name</th>
+                    <th>Shipment senders name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <h3 th:unless="${shipmentList} and ${shipmentList.size()}">There are no shipments for this employee!</h3></br>
+                <tr th:each="shipment: ${shipmentList}">
+                    <td th:text="${shipment.id}">Shipment ID</td>
+                    <td th:text="${shipment.weight}">Shipment weight</td>
+                    <td th:text="${shipment.address.address}">Shipment address</td>
+                    <td th:text="${shipment.receiver.name}">Shipment receivers name</td>
+                    <td th:text="${shipment.sender.name}">Shipment senders name</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+</body>
+</html>

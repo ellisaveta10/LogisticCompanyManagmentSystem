@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+    <h2 th:unless="${offices} and ${offices.size()}" class="text-center">There are no offices</h2>
+    <h2 th:if="${offices.size()>0}" class="text-center py-4">All available offices</h2>
+    <table th:if="${offices.size()>0}" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Company</th>
+            <th>Edit operation</th>
+            <th>Delete operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="office : ${offices}">
+            <td th:text="${office.id}"></td>
+            <td th:text="${office.name}"></td>
+            <td th:text="${office.address.address}"></td>
+            <td th:text="${office.logisticsCompany.name}"></td>
+            <td><a class="btn btn-info" th:href="@{'/offices/edit-office/'+${office.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/offices/delete/'+${office.id}}">Delete</a></td>
+        </tr>
+        <tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

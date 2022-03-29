@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<div class="container">
+    <h2 class="text-center py-4">Select client</h2>
+
+    <form class="text-center">
+        <h3 th:unless="${clients} and ${clients.size()}">There are no clients!</h3>
+        <div class="container d-flex flex-column">
+            <th:block th:each="client: ${clients}">
+            <div class="container m-2">
+                <input type="hidden" th:field="*{clients}"
+                       th:text="${client.name}" th:value="${client.id}" class="m-2 d-block" />
+                <a class="btn btn-info" th:href="@{'/clients/referenceForShipmentsForClient/' + ${client.id}}">Select</a>
+            </div>
+            </th:block>
+        </div>
+    </form>
+
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

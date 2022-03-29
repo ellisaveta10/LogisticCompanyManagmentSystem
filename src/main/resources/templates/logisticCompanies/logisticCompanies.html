@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+    <h2 th:unless="${logisticCompanies} and ${logisticCompanies.size()}" class="text-center">There are no companies</h2>
+    <h2 th:if="${logisticCompanies.size()>0}" class="text-center py-4">All available companies</h2>
+    <table th:if="${logisticCompanies.size()>0}" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Edit company</th>
+            <th>Delete company</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="logisticCompany : ${logisticCompanies}">
+            <td th:text="${logisticCompany.id}"></td>
+            <td th:text="${logisticCompany.name}"></td>
+            <td><a class="btn btn-info" th:href="@{'/logisticCompanies/edit-logisticCompany/'+${logisticCompany.id}}">Edit</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/logisticCompanies/delete/'+${logisticCompany.id}}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

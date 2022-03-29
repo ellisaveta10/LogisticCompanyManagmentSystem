@@ -1,0 +1,53 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4>Register the Logistic Company</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/logisticCompanies/create}" th:object="${logisticCompany}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" th:field="*{name}" placeholder="Name" id="name">
+            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Company</button>
+    </form>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+    <h2 class="text-center py-4">Create company</h2>
+
+    <form class="text-center" method="post" th:action="@{/logisticCompanies/create}" th:object="${logisticCompany}">
+        <div class="form-group">
+            <label for="text">Enter name</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-address-card"></i>
+                    </div>
+                </div>
+                <input th:field="*{name}" id="text" name="text" placeholder="Office name" type="text" required="required" class="form-control">
+                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <button name="submit" type="submit" class="btn btn-primary w-25 p-2">Create</button>
+        </div>
+    </form>
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

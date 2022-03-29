@@ -1,0 +1,57 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<h4>Create the Address</h4>
+<div class="col-6">
+    <form action="#" th:action="@{/addresses/create}" th:object="${address}" method="post">
+        <div class="form-group">
+                <label for="address">Address</label>
+                <input class="form-control" type="text" th:field="*{address}"
+                       placeholder="Address" id="address">
+                <span class="text-danger" th:if="${#fields.hasErrors('address')}"
+                      th:errors="*{address}">Address Error</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Address</button>
+    </form>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<div class="container">
+    <h2 class="text-center py-4">Create address</h2>
+
+    <form class="text-center" method="post" th:action="@{/addresses/create}" th:object="${address}">
+        <div class="form-group">
+            <label for="text">Enter name</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-address-card"></i>
+                    </div>
+                </div>
+                <input th:field="*{address}" id="text" name="text" placeholder="Address" type="text" required="required" class="form-control">
+                <span class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address error</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button name="submit" type="submit" class="btn btn-primary w-25 p-2">Save address</button>
+        </div>
+    </form>
+
+
+
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

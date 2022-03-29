@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1>User Registration - Sign Up</h1>
+    <div class="col-6">
+    <form th:action="@{/process_register}" th:object="${user}" method="post">
+        <div class="form-group">
+                <label for="email">E-mail: </label>
+                    <input class="form-control" type="text" th:field="*{email}"
+                           placeholder="E-mail" id="email">
+            <span class="text-danger" th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}">Email Error</span>
+        </div>
+
+            <div class="form-group">
+                <label for="password">Password: </label>
+                <input class="form-control" type="text" th:field="*{password}"
+                       placeholder="Password" id="password">
+                <span class="text-danger" th:if="${#fields.hasErrors('password')}"
+                      th:errors="*{password}">Password Error</span>
+            </div>
+
+        <div class="form-group">
+            <label for="firstName">First name: </label>
+            <input class="form-control" type="text" th:field="*{firstName}"
+                   placeholder="First name" id="firstName">
+            <span class="text-danger" th:if="${#fields.hasErrors('firstName')}"
+                  th:errors="*{firstName}">First Name Error</span>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last name: </label>
+            <input class="form-control" type="text" th:field="*{lastName}"
+                   placeholder="Last name" id="lastName">
+            <span class="text-danger" th:if="${#fields.hasErrors('lastName')}"
+                  th:errors="*{lastName}">Last Name Error</span>
+        </div>
+
+        <div class="form-group">
+        <label class="roles">Roles: </label></br>
+        <th:block th:each="role: ${listRoles}">
+            <input type="radio" th:field="*{roles}"
+                   th:text="${role.name}" th:value="${role.id}" class="m-2" />
+        </th:block>
+    </div>
+
+        <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+</div>
+</body>
+</html>

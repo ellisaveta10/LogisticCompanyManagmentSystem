@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+<form th:action="@{/logisticCompanies/referenceForCompaniesFormForEmployees/{id}(id=${id})}" th:object="${logisticCompany}" method="get">
+    <div class="container text-center">
+        <div>
+            <h1>List of Employees for company: [[${logisticCompany.name}]]</h1>
+        </div>
+
+        <div>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Courier Employee ID</th>
+                    <th>Courier Employee Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <h3 th:unless="${courierEmployeeList} and ${courierEmployeeList.size()}">There are no courier employees!</h3></br>
+                <tr th:each="courierEmployee: ${courierEmployeeList}">
+                    <td th:text="${courierEmployee.id}">Courier Employee ID</td>
+                    <td th:text="${courierEmployee.name}">Courier Employee Name</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Office Employee ID</th>
+                    <th>Office Employee Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <h3 th:unless="${officeEmployeeList} and ${officeEmployeeList.size()}">There are no office employees!</h3></br>
+                <tr th:each="officeEmployee: ${officeEmployeeList}">
+                    <td th:text="${officeEmployee.id}">Office Employee ID</td>
+                    <td th:text="${officeEmployee.name}">Office Employee Name</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+</body>
+</html>
